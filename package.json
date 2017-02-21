@@ -4,9 +4,13 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "dev": "wepy build",
-    "build": "cross-env NODE_ENV=production wepy build --no-cache",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf ./dist",
+    "cpWxParse": "cp -r node_modules/wxParse/wxParse src/ && rm -rf src/wxParse/emojis",
+    "dev": "npm run clean && wepy build --watch --no-cache",
+    "build": "npm run clean && cross-env NODE_ENV=production wepy build --no-cache",
+    "start": "npm run clean && wepy build --watch --no-cache",
+    "startmin": "npm run clean && cross-env NODE_ENV=production wepy build --watch --no-cache",
+    "release": "npm run clean && cross-env NODE_ENV=production wepy build --no-cache"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +19,7 @@
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-stage-1": "^6.22.0",
+    "core-js": "^2.4.1",
     "wepy": "^1.4.1",
     "wepy-com-toast": "^1.0.0",
     "wepy-compiler-babel": "^1.3.7",
@@ -24,6 +29,9 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.23.0",
+    "cross-env": "^3.1.4",
+    "promise-polyfill": "^6.0.2",
+    "regenerator-runtime": "^0.10.3",
     "wepy-plugin-imagemin": "^1.3.7",
     "wepy-plugin-uglifyjs": "^1.3.6"
   }

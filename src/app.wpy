@@ -12,6 +12,17 @@
 
 <script>
 
+var $global = require('core-js/library/modules/_global.js');
+// $global.q11111 = 'abc';
+// console.log(q11111);
+// console.log($global);
+
+import Promise from 'promise-polyfill';
+import regeneratorRuntime from 'regenerator-runtime/runtime';
+
+$global.regeneratorRuntime = regeneratorRuntime;
+$global.Promise = Promise;
+
 import wepy from 'wepy';
 
 export default class extends wepy.app {
@@ -32,8 +43,14 @@ export default class extends wepy.app {
         userInfo: null
     };
 
+    constructor (props) {
+        super(props);
+        this.use('promisify');
+        this.use('requestfix');
+    }
+
     onLaunch() {
-        console.log(this);
+        // console.log(this);
     }
 
     getUserInfo(cb) {
